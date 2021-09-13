@@ -1,0 +1,12 @@
+﻿l_english:
+ # Trade node/company:
+  # Caucasus:
+  caucasus_trade:0 "Caucasus"
+  trade_company_caucasus:0 "Caucasus Charter"
+  TRADE_COMPANY_CAUCASUS_Near_East_Trade_Company:0 "Caucasus Trade Company"
+  TRADE_COMPANY_CAUCASUS_Root_Culture_GetName:0 "[Root.Culture.GetName] Caucasus Company"
+  
+ # Modifiers:
+ transcaucasian_wine_valleys: "Transcaucasian Wine Valleys"
+ desc_transcaucasian_wine_valleys:0 "The fertile valleys and protective slopes of Transcaucasia have made the region home to grapevine cultivation and wine production for millennia."
+ 

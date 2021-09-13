@@ -1,0 +1,10 @@
+#
+SJK = "countries/SeaSeljukEmpire.txt"
+GMV = "countries/SeaGreatMoravia.txt"
+VIN = "countries/SeaVinland.txt"
+NSE = "countries/SeaNorthSeaEmpire.txt"
+KLU = "countries/SeaKalmarUnion.txt"
+ABA = "countries/AbbasidCaliphate.txt"
+LUS = "countries/Lusitania.txt"
+PRA = "countries/Prussia2.txt"
+KIT = "countries/Kitara Empire.txt"

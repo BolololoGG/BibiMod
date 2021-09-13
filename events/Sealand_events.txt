@@ -1,0 +1,565 @@
+########################################################################
+#Teutonic Order mission event:
+namespace = teutonic_events
+
+country_event = { # Centralize The Order mission event
+	id = teutonic_events.1
+	title = flavor_brapru.15.t
+	desc = teutonic_events.1.d
+	picture = DIPLOMACY_eventPicture
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = fired_brandeburg_event_for_neumark } # Because original Neumark event fired
+	}
+
+	immediate = { set_country_flag = fired_teutonic_event_for_neumark } # To stop the other event from firing
+	
+	option = { # Send offer to sell lands to Brandenburg.
+		name = teutonic_events.1.a
+		custom_tooltip = teutonic_events.1.a.tt
+		tooltip = {
+			add_country_modifier = {
+				name = "centralized_the_order_modifier"
+				duration = 1825
+			}
+			take_estate_land_share_gigantic = { estate = estate_burghers }
+		}
+		BRA = {
+			country_event = { id = teutonic_events.2 }
+		}
+	}
+	option = { # Keep the lands.
+		name = flavor_brapru.16.b
+		add_stability = 1
+	}
+}
+country_event = { # Brandenburg response
+	id = teutonic_events.2
+	title = flavor_brapru.15.t
+	desc = teutonic_events.2.d
+	picture = DIPLOMACY_eventPicture
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Accept the offer
+		name = teutonic_events.2.a
+		ai_chance = { factor = 100 }
+		tooltip = {
+			49 = {
+				if = {
+					limit = {
+						owned_by = FROM
+						controlled_by = FROM
+					}
+					cede_province = ROOT
+					add_core = ROOT
+					remove_core = FROM
+				}
+			}
+			4747 = {
+				if = {
+					limit = {
+						owned_by = FROM
+						controlled_by = FROM
+					}
+					cede_province = ROOT
+					add_core = ROOT
+					remove_core = FROM
+				}
+			}
+		}
+		add_treasury = -100
+		FROM = {
+			country_event = { id = teutonic_events.3 }
+			add_opinion = {
+				who = ROOT
+				modifier = pawning_of_neumark
+			}
+		}
+	}
+	option = { # Decline the offer
+		name = flavor_brapru.15.b
+		ai_chance = { factor = 0 }
+		custom_tooltip = flavor_brapru.15.b.tt
+		add_prestige = -5
+		FROM = {
+			country_event = { id = teutonic_events.4 }
+		}
+	}
+}
+country_event = { # Brandenburg accepts
+	id = teutonic_events.3
+	title = flavor_brapru.17.t
+	desc = teutonic_events.3.d
+	picture = DIPLOMACY_eventPicture
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = flavor_brapru.17.a
+		49 = {
+			if = {
+				limit = {
+					owned_by = ROOT
+					controlled_by = ROOT
+				}
+				cede_province = FROM
+				add_core = FROM
+				remove_core = ROOT
+			}
+		}
+		4747 = {
+			if = {
+				limit = {
+					owned_by = ROOT
+					controlled_by = ROOT
+				}
+				cede_province = FROM
+				add_core = FROM
+				remove_core = ROOT
+			}
+		}
+		add_treasury = 100
+		FROM = {
+			add_opinion = {
+				who = ROOT
+				modifier = pawning_of_neumark
+			}
+		}
+		add_country_modifier = {
+			name = "centralized_the_order_modifier"
+			duration = 1825
+		}
+		take_estate_land_share_gigantic = { estate = estate_burghers }
+	}
+}
+country_event = { # Brandenburg declines
+	id = teutonic_events.4
+	title = teutonic_events.4.t
+	desc = teutonic_events.4.d
+	picture = DIPLOMACY_eventPicture
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = teutonic_events.4.a
+		add_stability = 1
+	}
+}
+
+######################
+# Partition of Commonwealth mission event:
+
+country_event = {
+	id = teutonic_events.5
+	title = teutonic_events.5.t
+	desc = teutonic_events.5.d
+	picture = DIPLOMACY_eventPicture
+
+	is_triggered_only = yes
+
+	option = {
+		name = teutonic_events.5.a
+		ai_chance = { factor = 100 }
+		every_country = {
+			limit = {
+				owns = 4128
+			}
+			country_event = { id = teutonic_events.6 }
+		}
+		custom_tooltip = teutonic_events.5.aa.tt
+		tooltip = {
+			4128 = {
+				add_core = FROM
+				cede_province = FROM
+				remove_core = ROOT
+				change_culture = saxon
+				if = {
+					limit = {
+						NOT = { religion = catholic }
+					}
+					change_religion = catholic
+				}
+			}
+		}
+		custom_tooltip = teutonic_events.5.ab.tt
+		tooltip = {
+			4128 = {
+				add_core = FROM
+			}
+		}
+	}
+	option = {
+		name = teutonic_events.5.b
+		ai_chance = { factor = 0 }
+	}
+}
+country_event = { # Whoever owns, response.
+	id = teutonic_events.6
+	title = teutonic_events.6.t
+	desc = teutonic_events.6.d
+	picture = DIPLOMACY_eventPicture
+
+	is_triggered_only = yes
+
+	option = {
+		name = teutonic_events.6.a
+		ai_chance = { factor = 100 }
+		4128 = {
+			add_core = FROM
+			cede_province = FROM
+			remove_core = ROOT
+			change_culture = saxon
+			if = {
+				limit = {
+					NOT = { religion = catholic }
+				}
+				change_religion = catholic
+			}
+		}
+	}
+	option = {
+		name = teutonic_events.6.b
+		ai_chance = { factor = 0 }
+		4128 = {
+			add_core = FROM
+		}
+	}
+}
+########################################################################
+#Denmark mission event:
+namespace = sea_denmark_events
+
+country_event = {
+	id = sea_denmark_events.1
+	title = sea_denmark_events.1.t
+	desc = sea_denmark_events.1.d
+	picture = KING_SICK_IN_BED_eventPicture
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						normandy_area = {
+							type = all
+							NOT = { is_core = NRM }
+						}
+					}
+				}
+				normandy_area = { add_core = NRM }
+			}
+		}
+	}
+
+	option = {
+		name = sea_denmark_events.1.a
+		ai_chance = { factor = 100 }
+		hidden_effect = {
+			release = NRM
+		}
+		vassalize = NRM
+		hidden_effect = {
+			NRM = {
+				change_government = monarchy
+				add_government_reform = feudalism_reform
+			}
+		}
+		NRM = {
+			define_heir = {
+				name = "Rollo"
+				dynasty = "Ragnvaldsson"
+				religion = norse_pagan_reformed
+				claim = 100
+				birth_date = 860.1.1
+			}
+			hidden_effect = {
+				kill_ruler = yes
+			}
+			add_ruler_modifier = {
+				name = live_long_and_prosper_modifier
+				duration = -1
+			}
+		}
+		if = {
+			limit = {
+				normandy_area = {
+					is_core = ROOT
+				}
+			}
+			normandy_area = { remove_core = ROOT }
+		}
+	}
+	option = {
+		name = sea_denmark_events.1.b
+		ai_chance = { factor = 0 }
+		add_stability = -1
+		add_estate_loyalty = {
+			estate = estate_nobles
+			loyalty = -20
+		}
+	}
+}
+########################################################################
+namespace = sealand_events
+# New World and Colonial Australia nerf:
+
+country_event = {
+	id = sealand_events.1
+	title = sealand_events.1.t
+	desc = sealand_events.1.d
+	picture = BATTLE_eventPicture
+
+	hidden = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_country_flag = high_american_flag }
+		ai = yes
+		was_player = no
+		OR = {
+			tag = AZT
+			tag = CSU
+			tag = MIS
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					tag = AZT
+					tag = CSU
+				}
+			}
+			ROOT = {
+				change_technology_group = high_american
+				change_unit_type = high_american
+				set_country_flag = high_american_flag
+			}
+		}
+		if = {
+			limit = {
+				tag = MIS
+			}
+			capital_scope = {
+				cede_province = ---
+			}
+		}
+	}
+	option = {
+		name = sealand_events.1.a
+	}
+}
+
+country_event = {
+	id = sealand_events.2
+	title = sealand_events.2.t
+	desc = sealand_events.2.d
+	picture = COLONIZATION_eventPicture
+
+	fire_only_once = yes
+	trigger = {
+		ai = no
+		te_ika_a_maui_hauauru_area = {
+			type = all
+			owned_by = ROOT	
+		}
+		te_ika_a_maui_waho_area = {
+			type = all
+			owned_by = ROOT	
+		}
+		te_waipounamu_area = {
+			type = all
+			owned_by = ROOT	
+		}
+	}
+	option = {
+		name = sealand_events.2.a
+	}
+}
+country_event = {
+	id = sealand_events.3
+	title = sealand_events.3.t
+	desc = sealand_events.3.d
+	picture = EP_ISLAND_eventPicture
+
+	trigger = {
+		ai = no
+		num_of_owned_provinces_with = {
+			value = 20
+			is_island = yes
+		}
+		NOT = { has_country_flag = fired_sealand_event_3 }
+	}
+	option = {
+		name = sealand_events.3.a
+		set_country_flag = fired_sealand_event_3
+		add_country_modifier = {
+			name = sealand_modifier
+			duration = -1
+		}
+	}
+}
+# Estate 30% crownland set.
+country_event = {
+	id = sealand_events.4
+	title = sealand_events.4.t
+	desc = sealand_events.4.d
+	picture = BATTLE_eventPicture
+
+	hidden = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = { crown_land_share = 30 }
+		NOT = { has_country_flag = fired_crownland_event }
+	}
+	immediate = {
+		if = {
+			limit = {
+				crown_land_share = 29
+			}
+			take_estate_land_share_small = { estate = all }
+		}
+		if = {
+			limit = {
+				crown_land_share = 28
+				NOT = { crown_land_share = 29 }
+			}
+			take_estate_land_share_medium = { estate = all }
+		}
+		if = {
+			limit = {
+				crown_land_share = 27
+				NOT = { crown_land_share = 28 }
+			}
+			take_estate_land_share_large = { estate = all }
+		}
+		if = {
+			limit = {
+				crown_land_share = 25
+				NOT = { crown_land_share = 27 }
+			}
+			take_estate_land_share_massive = { estate = all }
+		}
+		if = {
+			limit = {
+				crown_land_share = 24
+				NOT = { crown_land_share = 25 }
+			}
+			take_estate_land_share_massive = { estate = all }
+			take_estate_land_share_small = { estate = all }
+		}
+		else_if = {
+			limit = {
+				NOT = { crown_land_share = 30 }
+			}
+			take_estate_land_share_medium = { estate = all }
+		}
+		set_country_flag = fired_crownland_event
+	}
+	option = {
+		name = sealand_events.4.a
+	}
+}
+
+########################################################################
+# Exlusive to Habibi mod:
+namespace = habibi_mod_exlusive
+
+# Georgia Eschatological Theocracy elections:
+country_event = {
+	id = habibi_mod_exlusive.1
+	title = habibi_mod_exlusive.1.t
+	desc = habibi_mod_exlusive.1.d
+	picture = KING_SICK_IN_BED_eventPicture
+
+	is_triggered_only = yes
+	trigger = {
+		has_reform = eschatological_theocracy_georgia_reform
+	}
+	option = {
+		name = habibi_mod_exlusive.1.a
+		define_ruler = {
+		}
+		change_statists_vs_orangists = -0.33
+	}
+	option = {
+		name = habibi_mod_exlusive.1.b
+		define_ruler = {
+		}
+		add_devotion = -5
+	}
+	option = {
+		name = habibi_mod_exlusive.1.c
+		define_ruler = {
+		}
+		change_statists_vs_orangists = 0.33
+	}
+}
+# Caliphate Eschatological Theocracy elections:
+country_event = {
+	id = habibi_mod_exlusive.2
+	title = habibi_mod_exlusive.1.t
+	desc = habibi_mod_exlusive.1.d
+	picture = KING_SICK_IN_BED_eventPicture
+
+	is_triggered_only = yes
+	trigger = {
+		has_reform = eschatological_theocracy_caliphate_reform
+	}
+	immediate = {
+		hidden_effect = {
+			define_exiled_ruler = {
+				exiled_as = caliphate_candidate_a_@ROOT
+				option = 0
+			}
+			define_exiled_ruler = {
+				exiled_as = caliphate_candidate_b_@ROOT
+				option = 1
+			}
+			define_exiled_ruler = {
+				exiled_as = caliphate_candidate_c_@ROOT
+				option = 2
+			}
+		}
+	}
+	after = {
+		clear_exiled_ruler = caliphate_candidate_a_@ROOT
+		clear_exiled_ruler = caliphate_candidate_b_@ROOT
+		clear_exiled_ruler = caliphate_candidate_c_@ROOT
+	}
+	option = {
+		name = habibi_mod_exlusive.2.a
+		ai_chance = {
+			factor = 0
+		}
+		set_ruler = caliphate_candidate_a_@ROOT
+		add_devotion = -5
+		add_prestige = 10
+	}
+	option = {
+		name = habibi_mod_exlusive.2.b
+		ai_chance = {
+			factor = 0
+		}
+		set_ruler = caliphate_candidate_b_@ROOT
+		add_years_of_income = 0.35
+		add_devotion = -5
+	}
+	option = {
+		name = habibi_mod_exlusive.2.c
+		ai_chance = {
+			factor = 0
+		}
+		set_ruler = caliphate_candidate_c_@ROOT
+		add_devotion = 10
+		add_prestige = -5
+	}
+}

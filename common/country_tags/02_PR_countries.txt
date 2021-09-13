@@ -1,0 +1,11 @@
+#Korea
+FO1 = "countries/Goguryeo.txt"
+FO2 = "countries/Mahan.txt"
+FO3 = "countries/Byeonham.txt"
+FO4 = "countries/Jinhan.txt"
+FO5 = "countries/Baekje.txt"
+FO6 = "countries/Ye.txt"
+FO7 = "countries/Dongye.txt"
+
+#Africa:
+PR2 = "countries/PRSokoto.txt"

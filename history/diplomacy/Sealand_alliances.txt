@@ -1,0 +1,7 @@
+# Castille + Aragon = PU mission over Portugal.
+union = {
+	first = CAS
+	second = ARA
+	start_date = 1444.10.10
+	end_date = 1555.11.11
+}

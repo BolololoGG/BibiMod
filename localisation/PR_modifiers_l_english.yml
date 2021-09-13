@@ -1,0 +1,13 @@
+﻿l_english:
+ ABANDON_CORE_COST:0 "Abandoning a core may restore your relation with the target country."
+ tooltip_university_on_institution_continent:0 "Have a §YUniversity§!."
+ DISHONORED_PENALTY_UNTIL:0 ""
+ grand_duchy_reform:0 "Grand Kingdom"
+ grand_duchy_reform_desc:0 "Our region never had many emperors, instead it is our kings that have united and led the various peoples within our borders to greatness."
+ PR_renaissance_capital_country_over_100_dev:0 "Renaissance in capital of nation with 100 development."
+ PR_colonialism_coastal:0 "Coastal province."
+ PR_colonialism_coastal_cot_lvl_3:0 "Coalstal province with level 3 Centre of Trade."
+ PR_colonialism_capital_no_coast_in_country:0 "Capital of nation with no coast."
+ PR_colonialism_cot_lvl_3_no_coast_in_country:0 "Province with level 3 Centre of Trade and no coast."
+ PR_printing_press_capital_20_dev:0 "Capital with at least 20 development."
+ PR_printing_press_paper:0 "Province produces paper outside of Europe."

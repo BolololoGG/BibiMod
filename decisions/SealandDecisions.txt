@@ -1,0 +1,874 @@
+# Turkification 
+country_decisions = { # For Mamluks
+	turkify_mamluks_decision = {
+		major = yes
+		potential = {
+			has_country_flag = enact_mam_turkification_decision
+			NOT = { has_country_flag = enacted_mam_turkification_decision }
+		}
+		allow = {
+			always = yes
+		}
+		effect = {
+			set_country_flag = enacted_mam_turkification_decision
+			if = {
+				limit = {
+					NOT = { primary_culture = turkish }
+				}
+				change_primary_culture = turkish
+			}
+			add_accepted_culture = al_misr_arabic
+			set_ruler_culture = turkish
+			if = {
+				limit = {
+					has_heir = yes
+				}
+				set_heir_culture = turkish
+			}
+			if = {
+				limit = {
+					has_consort = yes
+				}
+				set_consort_culture = turkish
+			}
+			change_technology_group = ottoman
+			change_unit_type = ottoman
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+# Literally same like the previous one, just there, in case only one is being transferred.
+country_decisions = { # For QQ
+	turkify_qq_decision = {
+		major = yes
+		potential = {
+			has_country_flag = enact_qq_turkification_decision
+			NOT = { has_country_flag = enacted_qq_turkification_decision }
+		}
+		allow = {
+			always = yes
+		}
+		effect = {
+			set_country_flag = enacted_qq_turkification_decision
+			if = {
+				limit = {
+					NOT = { primary_culture = turkish }
+				}
+				change_primary_culture = turkish
+			}
+			set_ruler_culture = turkish
+			if = {
+				limit = {
+					has_heir = yes
+				}
+				set_heir_culture = turkish
+			}
+			if = {
+				limit = {
+					has_consort = yes
+				}
+				set_consort_culture = turkish
+			}
+			change_technology_group = ottoman
+			change_unit_type = ottoman
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+# Great Moravia
+country_decisions = {
+	sea_great_moravian_nation = {
+		major = yes
+		potential = {
+			normal_or_historical_nations = yes
+			was_never_end_game_tag_trigger = yes
+			NOT = { has_country_flag = formed_great_moravia_flag }
+			OR = {
+				ai = no
+				is_playing_custom_nation = no
+			}
+			NOT = { exists = GMV }
+			is_colonial_nation = no
+			OR = {
+				is_former_colonial_nation = no
+				AND = {
+					is_former_colonial_nation = yes
+					ai = no
+				}
+			}
+			OR = {
+				primary_culture = czech
+				accepted_culture = slovak
+				accepted_culture = czech
+				primary_culture = slovak
+			}
+		}
+		provinces_to_highlight = {
+			OR = {
+				area = silesia_area
+				area = moravia_area
+				area = slovakia_area
+				area = central_poland_area
+				area = malopolska_area
+				area = sandomierz_area
+				province_id = 266 # Prague
+				province_id = 153 # Pest
+				province_id = 61 # Dresden
+			}
+			OR = {
+				NOT = { owned_by = ROOT }
+				NOT = { is_core = ROOT }
+			}
+		}
+		allow = {
+			is_at_war = no
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			adm_tech = 10
+			NOT = { exists = GMV }
+			OR = {
+				tag = BOH
+				tag = HUN
+			}
+			OR = {
+				AND = {
+					primary_culture = czech
+					accepted_culture = slovak
+				}
+				AND = {
+					accepted_culture = czech
+					primary_culture = slovak
+				}
+			}
+			silesia_area = {
+				type = all
+				owned_by = ROOT
+			}
+			moravia_area = {
+				type = all
+				owned_by = ROOT
+			}
+			slovakia_area = {
+				type = all
+				owned_by = ROOT
+			}
+			central_poland_area = {
+				type = all
+				owned_by = ROOT
+			}
+			malopolska_area = {
+				type = all
+				owned_by = ROOT
+			}
+			sandomierz_area = {
+				type = all
+				owned_by = ROOT
+			}
+			owns_core_province = 266 # Prague
+			owns_core_province = 153 # Pest
+			owns_core_province = 61 # Dresden
+		}
+		effect = {
+			4237 = { # Olomouc
+				move_capital_effect = yes
+			}
+			change_tag = GMV
+			if = {
+				limit = { NOT = { government_rank = 3 } }
+				set_government_rank = 3
+			}
+			add_government_reform = great_moravian_principality
+			lusatia_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			erzgebirge_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			bohemia_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			silesia_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			malopolska_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			transdanubia_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			alfold_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			59 = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			4744 = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			2965 = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			133 = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			1770 = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			259 = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			2959 = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			2424 = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = GMV
+			}
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			add_prestige = 25
+			if = {
+				limit = {
+					has_custom_ideas = no
+				}
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			set_country_flag = formed_great_moravia_flag
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+}
+
+country_decisions = { # Serbia Tsardom
+	serbia_unite_jugosland = {
+		major = yes
+		potential = {
+			tag = SER
+			NOT = { has_country_flag = serbia_unite_jugosland_flag }
+		}
+		provinces_to_highlight = {
+			region = balkan_region
+			OR = {
+				NOT = { owned_by = ROOT }
+				NOT = { is_core = ROOT }
+			}
+		}
+		allow = {
+			num_of_owned_provinces_with = {
+				value = 30
+				region = balkan_region
+				is_core = ROOT
+			}
+			tag = SER
+			religion = orthodox
+			is_at_war = no
+		}
+		effect = {
+			set_country_flag = serbia_unite_jugosland_flag
+			set_government_rank = 3
+			if = {
+				limit = {
+					government = republic
+					is_revolutionary = no
+				}
+				add_government_reform = veche_tsardom
+			}
+			if = {
+				limit = {
+					is_revolutionary = no
+					government = monarchy
+				}
+				add_government_reform = tsardom
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+}
+
+country_decisions = { # Weaker Prussia
+	form_weaker_prussia = {
+		major = yes
+		potential = {
+			normal_or_historical_nations = yes
+			was_never_end_game_tag_trigger = yes
+			NOT = { has_country_flag = formed_prussia_flag }
+			OR = {
+				ai = no
+				is_playing_custom_nation = no
+			}
+			OR = {
+				ai = no
+				is_religion_enabled = protestant
+				is_religion_enabled = reformed
+				is_religion_enabled = anglican
+			}
+			capital_scope = {
+				region = north_german_region
+			}
+			culture_group = germanic
+			NOT = { tag = PRA }
+			NOT = { exists = PRA }
+			NOT = { tag = GER }
+			NOT = { tag = HLR }
+			NOT = { has_reform = celestial_empire } 
+		}
+		provinces_to_highlight = {
+			region = north_german_region
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		allow = {
+			NOT = { exists = PRA }
+			num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with = {
+				value = 30
+				region = north_german_region
+			}
+			owns_core_province = 50
+			owns_core_province = 1758
+			owns_core_province = 82
+			adm_tech = 10
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			is_at_war = no
+			OR = {
+				religion = protestant
+ 				religion = reformed
+				religion = hussite
+				religion = anglican
+			}
+		}
+		effect = {
+			change_tag = PRA
+			restore_country_name_effect = yes
+			remove_non_electors_emperors_from_empire_effect = yes
+			if = {
+				limit = {
+					OR = {
+						NOT = { has_dlc = "Emperor" }
+						NOT = { hre_size = 1 }
+					}
+					NOT = { government_rank = 2 }
+				}
+				set_government_rank = 2
+			}
+			custom_tooltip = form_weaker_prussia_tooltip
+			hidden_effect = {
+				every_country = {
+					limit = {
+						is_subject_of = ROOT
+						culture_group = germanic
+						capital_scope = {
+							region = north_german_region
+						}
+					}
+					ROOT = { inherit = PREV }
+				}
+			}
+			north_german_region = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = ROOT
+			}
+			add_prestige = 25
+			if = {
+				limit = {
+					has_custom_ideas = no
+					NOT = { has_idea_group = PRU_ideas }
+				}
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 3650
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+}
+##############
+# Decision to get Theocracy:
+country_decisions = {
+	eschatological_theocracy_georgia_decision = { # For Georgia
+		major = yes
+		potential = {
+			NOT = { has_country_flag = eschatological_theocracy_georgia }
+			tag = GEO
+		}
+		provinces_to_highlight = {
+			OR = {
+				area = imereti_area
+				area = samtskhe_area
+				area = kartli_kakheti_area
+			}
+			NOT = {
+				owned_by = ROOT
+			}
+		}
+		allow = {
+			tag = GEO
+			is_at_war = no
+			imereti_area = {
+				type = all
+				owned_by = ROOT
+			}
+			samtskhe_area = {
+				type = all
+				owned_by = ROOT
+			}
+			kartli_kakheti_area = {
+				type = all
+				owned_by = ROOT
+			}
+		}
+		effect = {
+			set_country_flag = eschatological_theocracy_georgia
+			set_country_flag = eschatological_theocracy_georgia_reform_flag
+			change_government = theocracy
+			add_government_reform = eschatological_theocracy_georgia_reform
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	eschatological_theocracy_caliphate_decision = { # For Caliphate missions.
+		major = yes
+		potential = {
+			NOT = { has_country_flag = eschatological_theocracy_caliphate }
+			has_mission = restore_rashidun_caliphate
+		}
+		allow = {
+			mission_completed = restore_rashidun_caliphate
+			is_at_war = no
+		}
+		effect = {
+			set_country_flag = eschatological_theocracy_caliphate
+			set_country_flag = eschatological_theocracy_caliphate_reform_flag
+			change_government = theocracy
+			add_government_reform = eschatological_theocracy_caliphate_reform
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+# Khorosan Zoroastria:
+country_decisions = {
+	khorosan_to_zoroastrian = { # For Caliphate missions.
+		major = yes
+		potential = {
+			NOT = { has_country_flag = khorosan_zoroastrian_flag }
+			tag = KHO
+		}
+		allow = {
+			tag = KHO
+		}
+		effect = {
+			set_country_flag = khorosan_zoroastrian_flag
+			change_religion = zoroastrian
+			add_country_modifier = {
+				name = "khorosan_to_zoroastrian_modifier"
+				duration = 18250
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+# Sealand
+country_decisions = {
+	unite_estonia = {
+		major = yes
+		potential = {
+			NOT = { has_country_flag = united_estonia_flag }
+			normal_or_historical_nations = yes
+			was_never_end_game_tag_trigger = yes
+			OR = {
+				ai = no
+				is_playing_custom_nation = no
+			}
+			NOT = { exists = EST }
+			ai = no
+			is_colonial_nation = no
+			OR = {
+				is_former_colonial_nation = no
+				AND = {
+					is_former_colonial_nation = yes
+					ai = no
+				}
+			}
+			OR = {
+				owns = 35
+				owns = 36
+				owns = 1842
+				owns = 37
+				owns = 1834
+			}
+		}
+		provinces_to_highlight = {
+			OR = {
+				province_id = 35
+				province_id = 36
+				province_id = 1842
+				province_id = 37
+				province_id = 1834
+			}
+			NOT = { owned_by = ROOT }
+		}
+		allow = {
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			is_at_war = no
+			primary_culture = estonian
+			owns_core_province = 35
+			owns_core_province = 36
+			owns_core_province = 1842
+			owns_core_province = 37
+			owns_core_province = 1834
+			NOT = { num_of_cities = 6 }
+		}
+		effect = {
+			set_country_flag = united_estonia_flag
+			change_tag = EST
+			if = {
+				limit = {
+					NOT = { government_rank = 3 }
+				}
+				set_government_rank = 3
+			}
+			change_government = republic
+			add_government_reform = peasants_republic
+			add_prestige = 25
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			if = {
+				limit = { has_custom_ideas = no }
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+	unite_finland = {
+		major = yes
+		potential = {
+			NOT = { has_country_flag = united_finland_flag }
+			normal_or_historical_nations = yes
+			was_never_end_game_tag_trigger = yes
+			OR = {
+				ai = no
+				is_playing_custom_nation = no
+			}
+			NOT = { exists = FIN }
+			ai = no
+			is_colonial_nation = no
+			OR = {
+				is_former_colonial_nation = no
+				AND = {
+					is_former_colonial_nation = yes
+					ai = no
+				}
+			}
+			OR = {
+				accepted_culture = finnish
+				accepted_culture = estonian
+				accepted_culture = karelian
+				accepted_culture = sapmi
+			}
+		}
+		provinces_to_highlight = {
+			OR = {
+				area = finland_area
+				area = bothnia_area
+				area = north_karelia
+				province_id = 30
+				province_id = 33
+				province_id = 1776
+			}
+			NOT = { owned_by = ROOT }
+		}
+		allow = {
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			is_at_war = no
+			OR = {
+				primary_culture = finnish
+				primary_culture = estonian
+				primary_culture = karelian
+				primary_culture = sapmi
+			}
+			finland_area = {
+				type = all
+				owned_by = ROOT
+			}
+			bothnia_area = {
+				type = all
+				owned_by = ROOT
+			}
+			north_karelia = {
+				type = all
+				owned_by = ROOT
+			}
+			owns_core_province = 30
+			owns_core_province = 33
+			owns_core_province = 1776
+		}
+		effect = {
+			set_country_flag = united_finland_flag
+			if = {
+				limit = {
+					government = republic
+					is_revolutionary = no
+				}
+				add_government_reform = veche_tsardom
+			}
+			if = {
+				limit = {
+					is_revolutionary = no
+					government = monarchy
+				}
+				add_government_reform = tsardom
+			}
+			change_tag = FIN 
+			add_prestige = 25
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			if = {
+				limit = { has_custom_ideas = no }
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+}
+
+# Kitara Empire
+country_decisions = {
+	become_kitara_empire = { # For Caliphate missions.
+		major = yes
+		potential = {
+			NOT = { has_country_flag = formed_kitara_empire_flag }
+			normal_or_historical_nations = yes
+			was_never_end_game_tag_trigger = yes
+			OR = {
+				ai = no
+				is_playing_custom_nation = no
+			}
+			NOT = { exists = KIT }
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					num_of_cities = 20
+					adm_tech = 15
+				}
+			}
+			OR = {
+				culture_group = great_lakes_group
+				culture_group = african
+				culture_group = cushitic
+				culture_group = southern_african
+				culture_group = kongo_group
+				culture_group = sudanese
+			}
+			capital_scope = {
+				continent = africa
+				is_core = ROOT
+			}
+			is_colonial_nation = no
+			OR = {
+				is_former_colonial_nation = no
+				AND = {
+					is_former_colonial_nation = yes
+					ai = no
+				}
+			}
+		}
+		provinces_to_highlight = {
+			OR = {
+				province_id = 1170
+				province_id = 4092
+				province_id = 4097
+				province_id = 1185
+				province_id = 4040
+				province_id = 1196
+				province_id = 1202
+				province_id = 4064
+				province_id = 1205
+				province_id = 1211
+				province_id = 1224
+				province_id = 2757
+				region = kongo_region
+				region = central_africa_region
+				region = east_africa_region
+				region = horn_of_africa_region
+			}
+			NOT = { owned_by = ROOT }
+		}
+		allow = {
+			adm_tech = 15
+			is_free_or_tributary_trigger = yes
+			is_nomad = no
+			is_at_war = no
+			capital_scope = {
+				continent = africa
+				is_core = ROOT
+			}
+			num_of_owned_provinces_with = {
+				country_or_non_sovereign_subject_holds = ROOT
+				OR = {
+					region = kongo_region
+					region = central_africa_region
+					region = east_africa_region
+					region = horn_of_africa_region
+				}
+				value = 80
+			}
+			owns_core_province = 1170
+			owns_core_province = 4092
+			owns_core_province = 4097
+			owns_core_province = 1185
+			owns_core_province = 4040
+			owns_core_province = 1196
+			owns_core_province = 1202
+			owns_core_province = 4064
+			owns_core_province = 1205
+			owns_core_province = 1211
+			owns_core_province = 1224
+			owns_core_province = 2757
+		}
+		effect = {
+			set_country_flag = formed_kitara_empire_flag
+			change_tag = KIT
+			if = {
+				limit = {
+					NOT = { government_rank = 3 }
+				}
+				set_government_rank = 3
+			}
+			add_prestige = 25
+			add_country_modifier = {
+				name = "centralization_modifier"
+				duration = 7300
+			}
+			if = {
+				limit = { has_custom_ideas = no }
+				country_event = { id = ideagroups.1 } #Swap Ideas
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+}
+
+# When embraced Colonialism.
+country_decisions = {
+	colonial_colonist = {
+		major = yes
+		potential = {
+			NOT = { has_country_flag = colonial_colonist_flag }
+			has_institution = new_world_i
+		}
+		allow = {
+			treasury = 5000
+		}
+		effect = {
+			set_country_flag = colonial_colonist_flag
+			add_treasury = -5000
+			add_country_modifier = {
+				name = "colonial_colonist_modifier"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}

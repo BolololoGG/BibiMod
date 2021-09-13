@@ -1,0 +1,19 @@
+#835 - Panama 
+
+culture = muisca
+owner = MIS # Changed from 838 so could have Panama canal.
+controller = MIS
+add_core = MIS
+is_city = yes
+religion = animism
+capital = "Panama"
+trade_goods = unknown
+hre = no
+base_tax = 1
+base_production = 1
+base_manpower = 1
+native_size = 20
+native_ferocity = 2
+native_hostileness = 5
+extra_cost = 8
+center_of_trade = 1
